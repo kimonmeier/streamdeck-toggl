@@ -121,7 +121,7 @@ function leadingZero(val)
 }
 
 async function toggle(context, settings) {
-  const { apiToken, activity, projectId, workspaceId, billableToggle } = settings
+  const { apiToken, activity, projectId, workspaceId, billableToggle, tags } = settings
 
   getCurrentEntry(apiToken).then(entryData => {
     if (!entryData) {
@@ -139,7 +139,7 @@ async function toggle(context, settings) {
 
 // Toggl API Helpers
 
-function startEntry(apiToken = isRequired(), activity = 'Time Entry created by Toggl for Stream Deck', workspaceId = 0, projectId = 0, billableToggle = false) {
+function startEntry(apiToken = isRequired(), activity = 'Time Entry created by Toggl for Stream Deck', workspaceId = 0, projectId = 0, billableToggle = false, tags = []) {
   return fetch(
     `${togglBaseUrl}/time_entries/start`, {
     method: 'POST',
@@ -153,7 +153,8 @@ function startEntry(apiToken = isRequired(), activity = 'Time Entry created by T
         wid: workspaceId,
         pid: projectId,
 	billable: billableToggle,
-        created_with: 'Stream Deck'
+        created_with: 'Stream Deck',
+	tags: tags
       }
     })
   })
