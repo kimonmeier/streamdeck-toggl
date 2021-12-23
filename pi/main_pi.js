@@ -63,7 +63,8 @@ function sendSettings () {
       activity: document.getElementById('activity').value,
       workspaceId: document.getElementById('wid').value,
       projectId: document.getElementById('pid').value,
-      billableToggle: document.getElementById('billable').value == 1 ?  true : false
+      billableToggle: document.getElementById('billable').value == 1 ?  true : false,
+      tags: document.getElementById('tags').value
     }
   }))
 }
@@ -88,6 +89,7 @@ async function updateProjects (apiToken, workspaceId) {
       document.getElementById('workspaceError').classList.add('hiddenError')
       document.getElementById('projectWrapper').classList.remove('hidden')
       document.getElementById('billableWrapper').classList.remove('hidden')
+      document.getElementById('tagsWrapper').classList.remove('hidden')
       const selectEl = document.getElementById('pid')
 
       for (projectNum in projectsData) {
